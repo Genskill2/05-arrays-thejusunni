@@ -1,65 +1,70 @@
 /* Enter your solutions in this file */
 #include <stdio.h>
-int max(int array[],int n)
+int max(int a[], int n)
 {
-	int max=array[0];
-	for(int i=0;i<n;i++)
-	{	if(array[i]>max)
-		max=array[i];
-	}
-	return max;
+    int maxn = 0;
+    for(int i = 0; i<n; i++)
+    {
+        if(a[i]>maxn)
+            maxn = a[i];
+    }
+    return maxn;
 }
-int min(int array[],int n)
+
+int min(int a[], int n)
 {
-	int min=array[0];
-	for(int i=0;i<n;i++)
-	{	
-		if(array[i]<min)
-		min=array[i];
-	}
-	return min;
+    int minn = 2147483647;
+    for(int i = 0; i<n; i++)
+    {
+        if (a[i]< minn)
+            minn = a[i];
+    }
+    return minn;
 }
-float average(int array[], int n)
+
+float average(int a[], int n)
 {
-	int sum=0;		
-	for(int i=0;i<n;i++)
-	{	
-		sum+=array[i];
-	}
-	sum=sum/n;		
-	return sum;
-}	
-int mode(int array[], int n)
-{
-	int maxcount=0,maxvalue=0;
-	for(int i=0;i<n;i++)
-	{
-		int count=0;
-		for(int j=0;j<n;j++)
-		{
-			if(array[i]==array[j])
-				++count;
-		}
-		if(count>maxcount)
-		{
-			maxcount=count;
-			maxvalue=array[i];
-		}
-	return maxvalue;	
-	}
+    int sum = 0;
+    for(int i=0; i<n; i++)
+    {
+        sum+=a[i];
+    }
+    int avgn = sum/n;
+    return avgn;
 }
-int factors(int n, int array[])
+
+int mode(int a[],int n) 
 {
-	int j=0;
-	for(int i=2;i<=n;i++)
-	{
-		if(n%i==0)
-		{
-			array[j]=i;
-			n=n/i;
-			j++;
-			i=1;
-		}
-	}
-	return j;
+   int mxV = 0, mxC = 0;
+   for (int i = 0; i < n; ++i) 
+   {
+      int ct = 0;
+      for (int j = 0; j < n; ++j) 
+      {
+         if (a[j] == a[i])
+            ++ct;
+      }  
+      if (ct > mxC)
+      {  
+         mxC = ct;
+         mxV = a[i];
+      }
+   }
+   return mxV; 
+}
+
+int factors(int n, int a[])
+{
+    int p=n/2,j=0;
+    for(int i=2;i<p+1;)
+    {
+        if(n%i==0)
+        {
+            a[j]=i;
+            j++;
+            n=n/i;
+        }
+     else 
+     i++;
+  }return j;
 }
